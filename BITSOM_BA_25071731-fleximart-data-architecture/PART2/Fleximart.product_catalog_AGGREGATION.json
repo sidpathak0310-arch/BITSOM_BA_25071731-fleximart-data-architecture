@@ -1,0 +1,30 @@
+[{
+  "avg_price": 70830.83333333333,
+  "product_count": 6,
+  "category": "Electronics"
+},
+{
+  "avg_price": 5215,
+  "product_count": 6,
+  "category": "Fashion"
+}]
+
+stage 1: $group
+ {
+  "_id": "$category",
+  "avg_price": { "$avg": "$price" },
+  "product_count": { "$sum": 1 }
+}
+
+Stage 2: $sort
+{
+  "avg_price": -1
+}
+
+Stage 3: $project
+{
+  _id: 0,
+  category: "$_id",
+  avg_price: 1,
+  product_count: 1
+}

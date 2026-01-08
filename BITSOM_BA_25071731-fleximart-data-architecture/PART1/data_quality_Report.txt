@@ -1,0 +1,92 @@
+ETL DATA QUALITY 
+Project: FlexiMart Data 
+
+
+1. Customers CSV File (customers_raw.csv -> customers_clean.csv -> FLEXIMART1)
+
+
+Total records received: 26
+
+Duplicate handling:
+- Duplicate record detected for Rahul Sharma (C001)
+- Number of duplicates removed: 1
+
+Missing values handling:
+- Email missing in 5 records -> Dummy emails generated
+- Phone numbers had inconsistent formats -> Standardised
+- Registration dates in mixed formats -> Converted to YYYY-MM-DD
+
+Total missing values handled: 5
+
+Final result:
+- Number of records loaded successfully: 25
+
+2. Products CSV File (products_raw.csv -> products_clean.csv -> FLEXIMART2)
+
+Total records received: 20
+
+Duplicate handling:
+- No duplicate products found
+- Number of duplicates removed: 0
+
+Missing values handling:
+- Price missing in 3 records -> Default price assigned
+- Stock quantity missing in 1 record -> Set to 0
+- Category names inconsistent -> Standardised
+
+Total missing values handled: 4
+
+Final result:
+- Number of records loaded successfully: 20
+
+
+3. Orders / Transactions CSV File (orders_raw.csv -> orders_clean.csv -> FLEXIMART3 )
+
+
+Total records received: 40
+
+Duplicate handling:
+- Duplicate transaction detected (T001)
+- Number of duplicates removed: 1
+
+Missing values handling:
+- Customer ID missing in 3 records -> Records removed
+- Product ID missing in 2 records -> Records removed
+- Transaction dates in mixed formats -> Standardised
+
+Total invalid records removed due to missing foreign keys: 5
+
+Final result:
+- Number of records loaded successfully: 34
+
+
+Customers:
+- Initial records: 26
+- Duplicates removed: 1
+- Missing values handled: 5
+- Records loaded: 25
+
+Products:
+- Initial records: 20
+- Duplicates removed: 0
+- Missing values handled: 4
+- Records loaded: 20
+
+Orders:
+- Initial records: 40
+- Duplicates removed: 1
+- Missing values handled / invalid removed: 5
+- Records loaded: 34
+
+TOTAL:
+- Initial records processed: 86
+- Total duplicates removed: 2
+- Total missing values handled: 14
+- Total records loaded successfully: 79
+
+Project Conclusion:
+
+An ETL process was performed to clean, standardise, and load customer, product,
+and order data into a MySQL database. Data quality issues such as duplicates,
+missing values, and inconsistent formats were resolved to ensure reliable and
+structured data storage.

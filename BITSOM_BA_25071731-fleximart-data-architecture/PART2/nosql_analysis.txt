@@ -1,0 +1,44 @@
+NoSQL Database Analysis – FlexiMart
+Part 2: NoSQL Database Analysis
+
+
+* Section A: Limitations of RDBMS 
+  Question: Explain how MongoDB solves these problems using:
+
+           1. Flexible schema (document structure)
+           2. Embedded documents (reviews within products)
+           3. Horizontal scalability
+
+ Solution:  A relational database, such as MySQL, is designed for structured and uniform data, which makes it challenging to manage highly diverse products. In the Fleximart scenario, different products require different attributes. For example, laptops need RAM, a processor, and storage details, while shoes require size, colour, and material. In an RDBMS, this would either lead to a large number of unused columns or multiple dependent tables, increasing complexity and redundancy.
+
+Frequent schema changes are another major limitation. Whenever a new product type is introduced, the database schema must be altered using ALTER TABLE commands. This process is time-consuming, risky for large datasets, and may cause downtime.
+
+Additionally, storing customer reviews is inefficient in RDBMS. Reviews are naturally hierarchical, but relational databases require separate tables and JOIN operations, making queries more complex and slower as data grows.
+
+
+* Section B: NoSQL Benefits 
+  Question: Explain how MongoDB solves these problems using:
+
+           1. Flexible schema (document structure)
+           2. Embedded documents (reviews within products)
+           3.  Horizontal scalability
+
+  Answer: MongoDB addresses these limitations through its flexible, document-oriented schema. Each product is stored as a document, allowing different products to have different attributes without enforcing a rigid structure. For instance, a laptop document can store RAM and processor details, while a shoe document can store size and colour, all within the same collection.
+
+MongoDB also supports embedded documents, which allows customer reviews to be stored directly inside the product document. This reduces the need for JOIN operations and improves query performance and data readability.
+
+Another key advantage is horizontal scalability. MongoDB can distribute data across multiple servers using sharding, enabling FlexiMart to handle a rapidly growing and diverse product catalogue. This scalability ensures high availability and performance even as the number of products and users increases.
+
+
+* Section C: Trade-offs
+  Question: What are two disadvantages of using MongoDB instead of MySQL for this product catalogue?
+
+
+Answer: One disadvantage of MongoDB is its weaker support for complex relational queries and transactions compared to MySQL. Although MongoDB supports transactions, relational databases are still more mature for transaction-heavy systems.
+
+Another drawback is potential data inconsistency if the schema design is not handled carefully. MongoDB’s flexibility can lead to poorly structured documents, which may impact performance. Additionally, enforcing strict data validation requires extra effort compared to relational databases.
+
+
+Conclusion
+
+MongoDB is suitable for flexible and evolving product catalogues, while MySQL remains better for structured and transactional systems.

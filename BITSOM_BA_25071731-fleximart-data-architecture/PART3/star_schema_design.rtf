@@ -1,0 +1,107 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 .AppleSystemUIFontMonospaced-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red14\green14\blue14;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c6700\c6700\c6700;\csgray\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww21500\viewh15920\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 Section 1: 
+\f1\b Schema Overview
+\f0\b0\fs24 \
+\
+The FlexiMart data warehouse uses a star schema design to analyse sales data efficiently. \
+The schema consists of a central fact table that stores numerical sales information and multiple dimension tables that store descriptive details such as date, product, and customer information.\
+\
+ 
+\f1\b FACT TABLE
+\f0\b0 : fact_sales\
+\
+Grain: One row per product per order line item.\
+\
+Business Process:\
+Sales transactions are generated when customers purchase products.\
+\
+\
+
+\f1\b\fs26 Measures (Numeric Facts):
+\f0\b0\fs24 \
+- quantity_sold: Number of units sold\
+- unit_price: Price per unit at time of sale\
+- discount_amount: Discount applied\
+- total_amount: Final amount (quantity \'d7 unit_price \uc0\u8722  discount)\
+\
+
+\f1\b\fs28 Foreign Keys:
+\f0\b0\fs24 \
+- date_key \uc0\u8594  dim_date\
+- product_key \uc0\u8594  dim_product\
+- customer_key \uc0\u8594  dim_customer\
+\
+
+\f1\b\fs28 DIMENSION TABLE: dim_date
+\f0\b0\fs24 \
+\
+Purpose:\
+Stores date-related information for time-based analysis.\
+\
+Type:\
+Conformed dimension.\
+\
+\
+
+\f1\b\fs28 Attributes:
+\f0\b0\fs24 \
+- date_key (PK): Surrogate key in YYYYMMDD format\
+- full_date: Actual date\
+- day_of_week: Monday, Tuesday, etc.\
+- month: 1\'9612\
+- month_name: January, February, etc.\
+- quarter: Q1, Q2, Q3, Q4\
+- year: 2023, 2024, etc.\
+- is_weekend: Boolean value\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf2 Helps answer: * Which month sold more?\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	                         *Weekend vs weekday sales?
+\fs28 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\b \cf3 DIMENSION TABLE: dim_product
+\f0\b0\fs26 \
+\
+Purpose:\
+Stores descriptive details about products.\
+\
+
+\f1\b\fs28 Attributes:
+\f0\b0\fs26 \
+- product_key (PK): Surrogate key\
+- product_id: Business product identifier\
+- product_name: Name of the product\
+- category: Electronics, Fashion, etc.\
+- subcategory: Smartphones, Clothing, etc.\
+- unit_price: Product price
+\fs28 \cf2 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\b \cf3 DIMENSION TABLE: dim_customer
+\f0\b0\fs26 \
+\
+Purpose:\
+Stores descriptive information about customers.\
+\
+Attributes:\
+- customer_key (PK): Surrogate key\
+- customer_id: Business customer identifier\
+- customer_name: Full name of customer\
+- city: Customer city\
+- state: Customer state\
+- customer_segment: High, Medium, Low value
+\f2 \
+\
+}

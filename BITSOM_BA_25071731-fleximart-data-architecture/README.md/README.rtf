@@ -1,0 +1,134 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 .AppleSystemUIFontMonospaced-Regular;\f2\fnil\fcharset0 .SFNS-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red194\green11\blue35;\red244\green246\blue249;\red27\green31\blue35;
+\red24\green26\blue30;\red255\green255\blue255;\red14\green14\blue14;}
+{\*\expandedcolortbl;;\cssrgb\c81176\c13333\c18039;\cssrgb\c96471\c97255\c98039;\cssrgb\c14118\c16078\c18431;
+\cssrgb\c12157\c13725\c15686;\cssrgb\c100000\c100000\c100000;\cssrgb\c6700\c6700\c6700;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs27\fsmilli13600 \cf2 \cb3 \expnd0\expndtw0\kerning0
+# FlexiMart Data Architecture Project
+\f1 \cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf4 **Student Name:**
+\f1  [SIDDHARTH PATHAK]\
+
+\f0 **Student ID:**
+\f1  [
+\f0\fs26 \cf5 \cb6 BITSOM_BA_25071731-fleximart-data-
+\fs24 architecture
+\fs22 ]
+\f1\fs27\fsmilli13600 \cf4 \cb3 \
+
+\f0 **Email:**
+\f1  [Sidpathak0310@gmail.com]\
+
+\f0 **Date:**
+\f1  [8-10-2026]\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf2 ## Project Overview
+\f1 \cf4 \
+\
+[
+\f2\fs28 \cf7 \cb1 \kerning1\expnd0\expndtw0 This project designs and implements a complete data architecture solution for FlexiMart, including relational databases with ETL processing, NoSQL analysis using MongoDB, and a data warehouse with star schema modelling. The solution enables efficient data storage, cleaning, and advanced analytical reporting to support business decision-making.
+\f1\fs27\fsmilli13600 \cf4 \cb3 \expnd0\expndtw0\kerning0
+]\
+\
+
+\f0 \cf2 ## Repository Structure
+\f1 \cf4 \
+\uc0\u9500 \u9472 \u9472  part1-database-etl/\
+\uc0\u9474    \u9500 \u9472 \u9472  etl_pipeline.py\
+\uc0\u9474    \u9500 \u9472 \u9472  schema_documentation.md\
+\uc0\u9474    \u9500 \u9472 \u9472  business_queries.sql\
+\uc0\u9474    \u9492 \u9472 \u9472  data_quality_report.txt\
+\uc0\u9500 \u9472 \u9472  part2-nosql/\
+\uc0\u9474    \u9500 \u9472 \u9472  nosql_analysis.md\
+\uc0\u9474    \u9500 \u9472 \u9472  mongodb_operations.js\
+\uc0\u9474    \u9492 \u9472 \u9472  products_catalog.json\
+\uc0\u9500 \u9472 \u9472  part3-datawarehouse/\
+\uc0\u9474    \u9500 \u9472 \u9472  star_schema_design.md\
+\uc0\u9474    \u9500 \u9472 \u9472  warehouse_schema.sql\
+\uc0\u9474    \u9500 \u9472 \u9472  warehouse_data.sql\
+\uc0\u9474    \u9492 \u9472 \u9472  analytics_queries.sql\
+\uc0\u9492 \u9472 \u9472  README.md\
+\
+
+\f0 \cf2 ## Technologies Used
+\f1 \cf4 \
+\
+- Python 3.12, pandas, mysql-connector-python\
+- MySQL Workbench 9.4.0 \
+- MongoDB 8.2.3\
+\
+
+\f0 \cf2 ## Setup Instructions
+\f1 \cf4 \
+\
+
+\f0 \cf2 ### Database Setup
+\f1 \cf4 \
+\
+```bash\
+
+\f0 \cf2 # Create databases
+\f1 \cf4 \
+mysql -u root -p -e "CREATE DATABASE FLEXIMART(1,2,3,4);\'94\
+mysql -u root -p -e "CREATE DATABASE fleximart_dw;"\
+\
+
+\f0 \cf2 # Run Part 1 - ETL Pipeline
+\f1 \cf4 \
+python part1-database-etl/etl_pipeline.py\
+\
+
+\f0 \cf2 # Run Part 1 - Business Queries
+\f1 \cf4 \
+mysql -u root -p fleximart < part1-database-etl/business_queries.sql\
+\
+
+\f0 \cf2 # Run Part 3 - Data Warehouse
+\f1 \cf4 \
+mysql -u root -p fleximart_dw < part3-datawarehouse/warehouse_schema.sql\
+mysql -u root -p fleximart_dw < part3-datawarehouse/warehouse_data.sql\
+mysql -u root -p fleximart_dw < part3-datawarehouse/analytics_queries.sql\
+\
+\
+
+\f0 \cf2 ### MongoDB Setup
+\f1 \cf4 \
+\
+mongosh < part2-nosql/mongodb_operations.js\
+\
+
+\f0 \cf2 ## Key Learnings
+\f1 \cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs28 \cf7 \cb1 \kerning1\expnd0\expndtw0 \'95	Gained practical understanding of designing relational databases, ETL pipelines, and enforcing data quality using SQL and Python.\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf7 	\'95	Learned how NoSQL databases like MongoDB handle flexible schemas and nested data compared to relational databases.\
+	\'95	Understood star schema modelling, dimensional tables, and how data warehouses support analytical and business intelligence queries.
+\f1\fs27\fsmilli13600 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\partightenfactor0
+\cf4 \
+
+\f0 \cf2 ## Challenges Faced
+\f1 \cf4 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+
+\f2\fs28 \cf7 \cb1 \kerning1\expnd0\expndtw0 	\'95	Handling inconsistent data formats, missing values, and duplicates during ETL required careful cleaning and validation.\
+	\'95	Writing complex SQL queries with multiple joins, aggregations, and window functions was challenging initially.\
+	\'95	Managing different tools (MySQL, MongoDB, Python, GitHub) and ensuring correct file structure for submission required attention to detail.
+\f1\fs27\fsmilli13600 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\
+}

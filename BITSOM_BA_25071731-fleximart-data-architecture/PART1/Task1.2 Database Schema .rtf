@@ -1,0 +1,205 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 LucidaGrande;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 Fleximart Database Schema Documentation
+\f1\b0 \
+\
+ 
+\f0\b 1. Entity\'96Relationship Description
+\f1\b0 \
+\
+ ENTITY: customers (FLEXIMART1) 
+\f0\b *from the schema*
+\f1\b0 \
+ Purpose: \
+Stores information about customers registered on the Fleximart platform.
+\f0\b \
+\
+Attributes:
+\f1\b0 \
+-  
+\f0\b customer_id
+\f1\b0  : Unique identifier for each customer (Primary Key)\
+-  
+\f0\b first_name
+\f1\b0 : Customer\'92s first name\
+-  l
+\f0\b ast_name
+\f1\b0 : Customer\'92s last name\
+-  
+\f0\b email
+\f1\b0 : Customer\'92s email address (unique)\
+-  
+\f0\b phone
+\f1\b0 : Customer\'92s contact number\
+-  
+\f0\b city
+\f1\b0 : City where the customer resides\
+-  
+\f0\b registration_date
+\f1\b0 : Date when the customer registered\
+\
+ Relationships:\
+- One customer can place many orders\
+  (1: M relationship with `orders` table)\
+\
+---\
+\
+ENTITY: products(FLEXIMART2) 
+\f0\b *from the schema*
+\f1\b0 \
+Purpose:  \
+Stores details of products available for sale.\
+\
+
+\f0\b Attributes
+\f1\b0 :\
+- 
+\f0\b product_id
+\f1\b0 : Unique identifier for each product (Primary Key)\
+- 
+\f0\b product_name
+\f1\b0 : Name of the product\
+- 
+\f0\b category
+\f1\b0 : Product category (Electronics, Fashion, Groceries)\
+- 
+\f0\b price: 
+\f1\b0 Price of the product\
+-
+\f0\b  stock_quantity
+\f1\b0 : Available inventory count\
+\
+Relationships:\
+- One product can appear in many order_items  \
+  (1: M relationship with `order_items` table)\
+\
+---\
+\
+ ENTITY: orders(FLXIMART3)\
+Purpose: \
+Stores high-level order information placed by customers.\
+\
+
+\f0\b Attributes:
+\f1\b0 \
+- 
+\f0\b order_id
+\f1\b0 : Unique identifier for each order (Primary Key)\
+- 
+\f0\b customer_id
+\f1\b0 : Reference to the customer who placed the order (Foreign Key)\
+- 
+\f0\b order_date
+\f1\b0 : Date when the order was placed\
+- 
+\f0\b total_amount
+\f1\b0 : Total value of the order\
+- 
+\f0\b status
+\f1\b0 : Order status (Completed, Pending, Cancelled)\
+\
+Relationships:\
+- One order belongs to **one customer**\
+- One order can contain **many order items**\
+\
+---\
+\
+ENTITY: order_items(FLEXIMART4)\
+Purpose:  \
+Stores line-level details of products within an order.\
+\
+
+\f0\b Attributes:
+\f1\b0 \
+- 
+\f0\b order_item_id
+\f1\b0 : Unique identifier (Primary Key)\
+- 
+\f0\b order_id
+\f1\b0 : Reference to orders table (Foreign Key)\
+- 
+\f0\b product_id
+\f1\b0 : Reference to products table (Foreign Key)\
+- 
+\f0\b quantity
+\f1\b0 : Quantity of the product ordered\
+- 
+\f0\b unit_price
+\f1\b0 : Price per unit at the time of order\
+- 
+\f0\b subtotal:
+\f1\b0  Calculated as quantity \'d7 unit_price\
+\
+Relationships:\
+- Many order_items belong to one orde\
+- Many order_items reference one produc\
+\
+---\
+\
+
+\f0\b  2. Normalisation Explanation (Third Normal Form \'96 3NF)\
+
+\f1\b0 \
+The FlexiMart database schema is designed in **Third Normal Form (3NF)** to ensure data integrity, eliminate redundancy, and support efficient data management.\
+\
+In this design, all tables satisfy **First Normal Form (1NF)** by having atomic values and unique primary keys. Each table satisfies **Second Normal Form (2NF)** because all non-key attributes are fully dependent on the whole primary key. For example, in the `order_items` table, attributes such as quantity and unit_price depend entirely on the order_item_id and not on a partial key.\
+\
+The schema also satisfies **Third Normal Form (3NF)** because there are no transitive dependencies. Non-key attributes do not depend on other non-key attributes. For instance, customer details such as email and city are stored only in the `customers` table and not repeated in the `orders` table. Similarly, product details such as price and category are stored in the `products` table and referenced using foreign keys.\
+\
+**Functional Dependencies:**\
+- customer_id 
+\f2 \uc0\u8594 
+\f1  first_name, last_name, email, phone, city, registration_date\
+- product_id 
+\f2 \uc0\u8594 
+\f1  product_name, category, price, stock_quantity\
+- order_id 
+\f2 \uc0\u8594 
+\f1  customer_id, order_date, total_amount, status\
+- order_item_id 
+\f2 \uc0\u8594 
+\f1  order_id, product_id, quantity, unit_price, subtotal\
+\
+This structure avoids **update anomalies** by ensuring data is updated in only one place, **insert anomalies** by allowing independent insertion of customers and products, and **delete anomalies** by preventing unintended loss of related data. Overall, the schema ensures consistency, scalability, and reliability.\
+\
+---\
+\
+ 3. Sample Data Representation\
+\
+customers\
+| customer_id | first_name | last_name | email                   | city       |\
+|------------|-----------|----------|-------------------------|------------|\
+| 1          | Rahul     | Sharma   | rahul@gmail.com         | Bangalore  |\
+| 2          | Priya     | Patel    | priya@yahoo.com         | Mumbai     |\
+\
+---\
+\
+ products\
+| product_id | product_name        | category     | price   | stock_quantity |\
+|-----------|---------------------|--------------|---------|----------------|\
+| 1         | Samsung Galaxy S21  | Electronics  | 45999   | 150            |\
+| 2         | Nike Running Shoes  | Fashion      | 3499    | 80             |\
+\
+---\
+\
+ orders\
+| order_id | customer_id | order_date | total_amount | status     |\
+|---------|-------------|------------|--------------|------------|\
+| 1       | 1           | 2024-01-15 | 45999        | Completed  |\
+| 2       | 2           | 2024-01-16 | 5998         | Completed  |\
+\
+---\
+\
+ order_items\
+| order_item_id | order_id | product_id | quantity | unit_price | subtotal |\
+|--------------|----------|------------|----------|------------|----------|\
+| 1            | 1        | 1          | 1        | 45999      | 45999    |\
+| 2            | 2        | 2          | 2        | 2999       | 5998     |\
+\
+}

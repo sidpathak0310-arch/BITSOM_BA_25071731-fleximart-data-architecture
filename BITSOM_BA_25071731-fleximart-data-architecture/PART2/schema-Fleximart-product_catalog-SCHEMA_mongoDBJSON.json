@@ -1,0 +1,179 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "_id",
+      "category",
+      "created_at",
+      "name",
+      "price",
+      "product_id",
+      "reviews",
+      "specifications",
+      "stock",
+      "subcategory",
+      "tags",
+      "updated_at",
+      "warranty_months"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "category": {
+        "bsonType": "string"
+      },
+      "created_at": {
+        "bsonType": "string"
+      },
+      "name": {
+        "bsonType": "string"
+      },
+      "price": {
+        "bsonType": "int"
+      },
+      "product_id": {
+        "bsonType": "string"
+      },
+      "reviews": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "object",
+          "properties": {
+            "comment": {
+              "bsonType": "string"
+            },
+            "date": {
+              "bsonType": "string"
+            },
+            "rating": {
+              "bsonType": "int"
+            },
+            "user_id": {
+              "bsonType": "string"
+            },
+            "username": {
+              "bsonType": "string"
+            }
+          },
+          "required": [
+            "comment",
+            "date",
+            "rating",
+            "user_id"
+          ]
+        }
+      },
+      "specifications": {
+        "bsonType": "object",
+        "properties": {
+          "battery": {
+            "bsonType": "string"
+          },
+          "battery_life": {
+            "bsonType": "string"
+          },
+          "brand": {
+            "bsonType": "string"
+          },
+          "camera": {
+            "bsonType": "string"
+          },
+          "care": {
+            "bsonType": "string"
+          },
+          "collar": {
+            "bsonType": "string"
+          },
+          "color": {
+            "bsonType": "string"
+          },
+          "connectivity": {
+            "bsonType": "string"
+          },
+          "display_type": {
+            "bsonType": "string"
+          },
+          "features": {
+            "bsonType": "string"
+          },
+          "fit": {
+            "bsonType": "string"
+          },
+          "graphics": {
+            "bsonType": "string"
+          },
+          "material": {
+            "bsonType": "string"
+          },
+          "noise_cancellation": {
+            "bsonType": "string"
+          },
+          "panel_type": {
+            "bsonType": "string"
+          },
+          "processor": {
+            "bsonType": "string"
+          },
+          "ram": {
+            "bsonType": "string"
+          },
+          "refresh_rate": {
+            "bsonType": "string"
+          },
+          "resolution": {
+            "bsonType": "string"
+          },
+          "screen_size": {
+            "bsonType": "string"
+          },
+          "sizes_available": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "string"
+            }
+          },
+          "sleeve": {
+            "bsonType": "string"
+          },
+          "smart_features": {
+            "bsonType": "string"
+          },
+          "sole": {
+            "bsonType": "string"
+          },
+          "storage": {
+            "bsonType": "string"
+          },
+          "type": {
+            "bsonType": "string"
+          },
+          "weight": {
+            "bsonType": "string"
+          }
+        },
+        "required": [
+          "brand"
+        ]
+      },
+      "stock": {
+        "bsonType": "int"
+      },
+      "subcategory": {
+        "bsonType": "string"
+      },
+      "tags": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "updated_at": {
+        "bsonType": "string"
+      },
+      "warranty_months": {
+        "bsonType": "int"
+      }
+    }
+  }
+}
